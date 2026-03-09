@@ -24,7 +24,7 @@ pip install streamlit pandas requests
 
 ## Deployment
 
-Deployed on [Streamlit Community Cloud](https://streamlit.io/cloud). To deploy your own instance:
+Deployed on [Streamlit Community Cloud](https://nhl-scores.streamlit.app/). To deploy your own instance:
 
 1. Fork this repository
 2. Connect it to Streamlit Community Cloud
