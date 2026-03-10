@@ -3,6 +3,10 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import streamlit as st
 
+def team_logo(abbrev):
+  url = f"https://assets.nhle.com/logos/nhl/svg/{abbrev}_light.svg"
+  return f'<img src="{url}" height="28px" style="vertical-align:middle; margin:0 4px;">'
+
 def get_period_label(period):
   """Convert period number to display label."""
   labels = {1: '1st', 2: '2nd', 3: '3rd', 4: 'OT', 5: 'SO'}
@@ -87,9 +91,9 @@ def get_scores(date):
       in_intermission = game['clock']['inIntermission']
 
       if in_intermission:
-        st.subheader(f"{away_team} {away_score} - {home_score} {home_team} {period_label} INT")
+        st.markdown(f"### {team_logo(away_team)} {away_team} {away_score} - {home_score} {home_team} {team_logo(home_team)} {period_label} INT", unsafe_allow_html=True)
       else:
-        st.subheader(f"{away_team} {away_score} - {home_score} {home_team} {period_label} {time_left}")
+        st.markdown(f"### {team_logo(away_team)} {away_team} {away_score} - {home_score} {home_team} {team_logo(home_team)}{period_label} {time_left}", unsafe_allow_html=True)
 
       display_goals(game.get('goals', []))
 
@@ -97,7 +101,7 @@ def get_scores(date):
     elif game_state in ("PRE", "FUT"):
       utc_time = datetime.fromisoformat(game['startTimeUTC'].replace('Z', '+00:00'))
       eastern_time = utc_time.astimezone(MY_TIMEZONE)
-      st.subheader(f"{away_team} @ {home_team} - {eastern_time.strftime('%-I:%M %p')}")
+      st.markdown(f"### {team_logo(away_team)} {away_team} @ {home_team} {team_logo(home_team)} - {eastern_time.strftime('%-I:%M %p')}", unsafe_allow_html=True)
 
     # if the game is over, show the final score
     elif game_state in ("OFF", "FINAL"):
@@ -110,6 +114,6 @@ def get_scores(date):
       elif game['gameOutcome']['lastPeriodType'] == "SO":
         end_result = "Final/SO"
 
-      st.subheader(f"{away_team} {away_score} - {home_score} {home_team} {end_result}")
+      st.markdown(f"### {team_logo(away_team)} {away_team} {away_score} - {home_score} {home_team} {team_logo(home_team)} {end_result}", unsafe_allow_html=True)
 
       display_goals(game.get('goals', []))
