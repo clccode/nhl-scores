@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from nhl_scores import get_period_label, display_goals, get_scores
 from nhl_standings import display_standings_page
 
@@ -7,7 +8,7 @@ st.set_page_config(page_title="NHL Scores & Standings", page_icon="🏒", layout
 
 # add sidebar with date input
 st.sidebar.header("Select Date")
-selected_date = st.sidebar.date_input("Select a date", datetime.now()) 
+selected_date = st.sidebar.date_input("Select a date",  datetime.now(ZoneInfo('US/Eastern'))  ) 
 if st.sidebar.button("🔄 Refresh Scores 🔄"):
     st.rerun() 
 
