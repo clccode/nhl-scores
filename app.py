@@ -34,5 +34,4 @@ with leaders_tab:
     st.subheader("Plus/Minus Leaders")
     get_leaders("plusMinus", "+/-")
     st.subheader("Penalty Minutes Leaders")
-    get_leaders("penaltyMinutes", "PIM")
     get_leaders("penaltyMins", "PIM")
