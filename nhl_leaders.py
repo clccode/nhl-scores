@@ -10,6 +10,7 @@ This should work for goals, assists, points, penalty minutes, etc.
 The function will return a pandas data frame.
 """
 
+@st.cache_data(ttl=300) # cache for 300 seconds (5 minutes)
 def get_leaders(category, title):
   # empty set to hold the category leaders
   category_leaders = []
