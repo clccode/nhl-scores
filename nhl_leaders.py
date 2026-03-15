@@ -51,6 +51,6 @@ def get_leaders(category, title):
         rank = i + 1
         ranks.append(rank)
     df.index = [f"T{r}" if ranks.count(r) > 1 else str(r) for r in ranks]
-    return st.dataframe(df, use_container_width=False)
+    return df
   except:
     print('Error')
