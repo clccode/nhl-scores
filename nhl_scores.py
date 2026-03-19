@@ -101,7 +101,7 @@ def get_scores(date):
     elif game_state in ("PRE", "FUT"):
       utc_time = datetime.fromisoformat(game['startTimeUTC'].replace('Z', '+00:00'))
       eastern_time = utc_time.astimezone(MY_TIMEZONE)
-      st.markdown(f"### {team_logo(away_team)} {away_team} @ {home_team} {team_logo(home_team)} - {eastern_time.strftime('%-I:%M %p')}", unsafe_allow_html=True)
+      st.markdown(f"### {team_logo(away_team)} {away_team} @ {home_team} {team_logo(home_team)} {eastern_time.strftime('%-I:%M %p')}", unsafe_allow_html=True)
 
     # if the game is over, show the final score
     elif game_state in ("OFF", "FINAL"):

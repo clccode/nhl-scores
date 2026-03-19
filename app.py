@@ -24,7 +24,7 @@ with standings_tab:
     display_standings_page(selected_date.strftime('%Y-%m-%d')) 
 
 with leaders_tab:
-    st.title(f"🌟 NHL Leaders - {selected_date.strftime('%B %-d, %Y')}")
+    st.title("🌟 NHL Leaders")
     col, _ = st.columns([1, 2])
     with col:
         st.header("Skater Leaders")
