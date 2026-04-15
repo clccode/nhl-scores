@@ -72,7 +72,7 @@ def get_scores(date):
 
   # check if no games scheduled
   if not games:
-    print("No games scheduled for this date.")
+    st.subheader("No games scheduled for this date.")
     return
 
   # loop through the games
