@@ -10,6 +10,7 @@ def get_standings(date):
     return data['standings']  # return the raw API data
 
 def format_pct(value):
+    """This function formats the points percentage in the standings"""
     if not isinstance(value, float):
         return '-'
     return f"{value:.3f}".lstrip('0')
