@@ -13,6 +13,9 @@ def get_standings(date):
 def build_standings_df(teams):
     rows = []
     for team in teams:
+        point_percentage = team.get('pointPctg', '-')
+        streak_code = team.get('streakCode', '-')
+        streak_count = team.get('streakCount', '-')
         rows.append({
             'Team': team['teamAbbrev']['default'],
             'GP': team['gamesPlayed'],
@@ -20,7 +23,7 @@ def build_standings_df(teams):
             'L': team['losses'],
             'OT': team['otLosses'],
             'PTS': team['points'],
-            'P%': f"{team['pointPctg']:.3f}"[1:],
+            'P%': point_percentage,
             'RW': team['regulationWins'],
             'ROW': team['regulationPlusOtWins'],
             'GF': team['goalFor'],
@@ -30,7 +33,7 @@ def build_standings_df(teams):
             'AWAY': f"{team['roadWins']}-{team['roadLosses']}-{team['roadOtLosses']}",
             'S/O': f"{team['shootoutWins']}-{team['shootoutLosses']}",
             'L10': f"{team['l10Wins']}-{team['l10Losses']}-{team['l10OtLosses']}",
-            'STRK': f"{team['streakCode']}{team['streakCount']}"
+            'STRK': f"{streak_code}{streak_count}",
         })
     df = pd.DataFrame(rows)
     df.index = range(1, len(df) + 1)
