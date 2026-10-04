@@ -9,6 +9,11 @@ def get_standings(date):
     data = response.json()
     return data['standings']  # return the raw API data
 
+def format_pct(value):
+    if not isinstance(value, float):
+        return '-'
+    return f"{value:.3f}".lstrip('0')
+
 # set up the function to retrieve the standings
 def build_standings_df(teams):
     rows = []
@@ -23,7 +28,7 @@ def build_standings_df(teams):
             'L': team['losses'],
             'OT': team['otLosses'],
             'PTS': team['points'],
-            'P%': point_percentage,
+            'P%': format_pct(point_percentage),
             'RW': team['regulationWins'],
             'ROW': team['regulationPlusOtWins'],
             'GF': team['goalFor'],
